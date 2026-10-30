@@ -1,0 +1,11 @@
+
+</main>
+
+<footer class="container text-center small pb-4">
+    UJIANPOS &copy; <?= date('Y') ?> · Aplikasi Pengelolaan Supplier dan Sales
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
