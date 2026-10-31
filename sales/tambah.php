@@ -1,31 +1,66 @@
+
 <?php
 require_once __DIR__ . '/../koneksi.php';
 
-$judul = 'Tambah Penjualan';
-$error = '';
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+if (!$id || $id < 1) {
+    redirect('index.php');
+}
+
+$stmt = $pdo->prepare('SELECT * FROM sales WHERE id = ?');
+$stmt->execute([$id]);
+$sale = $stmt->fetch();
+
+if (!$sale) {
+    setFlash('Data penjualan tidak ditemukan.', 'danger');
+    redirect('index.php');
+}
 
 $suppliers = $pdo->query(
     'SELECT id, name FROM suppliers ORDER BY name ASC'
 )->fetchAll();
 
+$judul = 'Edit Penjualan';
+$error = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!verifyCsrfToken($_POST['csrf_token'] ?? null)) {
-        $error = 'Permintaan tidak valid. Silakan coba lagi.';
+        $error = 'Permintaan tidak valid.';
     } else {
-        $supplierId = filter_var($_POST['supplier_id'] ?? '', FILTER_VALIDATE_INT);
+        $supplierId = filter_var(
+            $_POST['supplier_id'] ?? '',
+            FILTER_VALIDATE_INT
+        );
         $totalInput = $_POST['total'] ?? '';
 
-        if (!$supplierId || !isset($suppliers[array_search($supplierId, array_column($suppliers, 'id'))])) {
+        $validSupplier = false;
+
+        foreach ($suppliers as $supplier) {
+            if ((int) $supplier['id'] === $supplierId) {
+                $validSupplier = true;
+                break;
+            }
+        }
+
+        if (!$validSupplier) {
             $error = 'Silakan pilih pemasok yang valid.';
         } elseif ($totalInput === '' || !ctype_digit((string) $totalInput)) {
-            $error = 'Total penjualan harus berupa angka bulat positif atau nol.';
+            $error = 'Total harus berupa angka bulat positif atau nol.';
         } else {
-            $stmt = $pdo->prepare(
-                'INSERT INTO sales (supplier_id, total) VALUES (?, ?)'
+            $update = $pdo->prepare(
+                'UPDATE sales
+                 SET supplier_id = ?, total = ?
+                 WHERE id = ?'
             );
-            $stmt->execute([$supplierId, (int) $totalInput]);
 
-            setFlash('Data penjualan berhasil ditambahkan.');
+            $update->execute([
+                $supplierId,
+                (int) $totalInput,
+                $id
+            ]);
+
+            setFlash('Data penjualan berhasil diperbarui.');
             redirect('index.php');
         }
     }
@@ -34,25 +69,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 include __DIR__ . '/../header.php';
 ?>
 
-<div class="container py-4">
-    <h2>Tambah Penjualan</h2>
-    <p>Masukkan data penjualan baru.</p>
+<div class="mb-4">
+    <h1 class="page-title h3">Edit Penjualan</h1>
+    <p class="text-muted">Perbarui data penjualan.</p>
+</div>
 
-    <?php if ($error): ?>
-        <div class="alert alert-danger"><?= e($error) ?></div>
-    <?php endif; ?>
+<div class="card">
+    <div class="card-body">
 
-    <div class="card shadow-sm p-4">
+        <?php if ($error !== ''): ?>
+            <div class="alert alert-danger">
+                <?= e($error) ?>
+            </div>
+        <?php endif; ?>
+
         <form method="POST">
-            <input type="hidden" name="csrf_token" value="<?= e(csrfToken()) ?>">
+            <input type="hidden" name="csrf_token"
+                   value="<?= e(csrfToken()) ?>">
 
             <div class="mb-3">
                 <label class="form-label">Nama Pemasok</label>
                 <select name="supplier_id" class="form-select" required>
-                    <option value="">-- Pilih Pemasok --</option>
                     <?php foreach ($suppliers as $supplier): ?>
                         <option value="<?= e($supplier['id']) ?>"
-                            <?= (string)($_POST['supplier_id'] ?? '') === (string)$supplier['id'] ? 'selected' : '' ?>>
+                            <?= (string)($_POST['supplier_id'] ?? $sale['supplier_id']) === (string)$supplier['id'] ? 'selected' : '' ?>>
                             <?= e($supplier['name']) ?>
                         </option>
                     <?php endforeach; ?>
@@ -63,12 +103,18 @@ include __DIR__ . '/../header.php';
                 <label class="form-label">Total Penjualan (Rp)</label>
                 <input type="number" name="total" class="form-control"
                        min="0" step="1" required
-                       value="<?= e($_POST['total'] ?? '') ?>">
+                       value="<?= e($_POST['total'] ?? $sale['total']) ?>">
             </div>
 
-            <button type="submit" class="btn btn-primary">Simpan</button>
-            <a href="index.php" class="btn btn-secondary">Kembali</a>
+            <button type="submit" class="btn btn-primary">
+                Simpan Perubahan
+            </button>
+
+            <a href="index.php" class="btn btn-secondary">
+                Kembali
+            </a>
         </form>
+
     </div>
 </div>
 

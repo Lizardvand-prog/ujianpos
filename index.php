@@ -10,30 +10,33 @@ $totalSales = (int) $pdo->query(
     'SELECT COUNT(*) FROM sales'
 )->fetchColumn();
 
-$judul = 'Dashboard UJIANPOS';
+$judul = 'Dashboard';
 include 'header.php';
 ?>
 
-<div class="mb-4">
-    <p class="text-primary fw-semibold small text-uppercase mb-1">
-        Dashboard
-    </p>
-    <h1 class="page-title h3 mb-1">Selamat Datang di UJIANPOS</h1>
-    <p class="text-secondary">
-        Sistem Informasi Pengelolaan Supplier dan Sales.
-    </p>
+<div class="d-flex align-items-center gap-3 mb-4">
+    <img src="images/logo.png"
+         alt="Logo TKJ"
+         width="75"
+         height="75"
+         style="object-fit: contain;">
+
+    <div>
+        <h1 class="page-title h3 mb-1">UJIANPOS</h1>
+        <p class="text-muted mb-0">
+            Aplikasi Pengelolaan Supplier dan Sales - TKJ 35
+        </p>
+    </div>
 </div>
 
 <div class="row g-3 mb-4">
     <div class="col-md-6">
-        <div class="card shadow-soft h-100">
+        <div class="card h-100">
             <div class="card-body">
-                <p class="text-secondary mb-1">Total Supplier</p>
-                <h2 class="display-5 fw-bold">
-                    <?= $totalSupplier ?>
-                </h2>
-                <a href="suppliers/index.php"
-                   class="btn btn-primary">
+                <h5 class="text-muted">Total Supplier</h5>
+                <h2 class="fw-bold"><?= $totalSupplier ?></h2>
+
+                <a href="suppliers/index.php" class="btn btn-primary">
                     Kelola Supplier
                 </a>
             </div>
@@ -41,14 +44,12 @@ include 'header.php';
     </div>
 
     <div class="col-md-6">
-        <div class="card shadow-soft h-100">
+        <div class="card h-100">
             <div class="card-body">
-                <p class="text-secondary mb-1">Total Sales</p>
-                <h2 class="display-5 fw-bold">
-                    <?= $totalSales ?>
-                </h2>
-                <a href="sales/index.php"
-                   class="btn btn-success">
+                <h5 class="text-muted">Total Sales</h5>
+                <h2 class="fw-bold"><?= $totalSales ?></h2>
+
+                <a href="sales/index.php" class="btn btn-secondary">
                     Kelola Sales
                 </a>
             </div>
@@ -56,15 +57,15 @@ include 'header.php';
     </div>
 </div>
 
-<div class="card shadow-soft">
+<div class="card">
     <div class="card-body">
-        <h2 class="h5">Tentang Aplikasi</h2>
+        <h5>Tentang Aplikasi</h5>
         <p class="mb-0">
-            UJIANPOS merupakan aplikasi berbasis PHP Native dan PDO
-            untuk mengelola data supplier serta transaksi sales.
+            UJIANPOS adalah aplikasi untuk mengelola data supplier
+            dan sales. Aplikasi ini dibuat menggunakan PHP Native,
+            PDO, dan MariaDB.
         </p>
     </div>
 </div>
 
 <?php include 'footer.php'; ?>
-

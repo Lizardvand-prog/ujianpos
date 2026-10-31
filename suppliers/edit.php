@@ -1,10 +1,11 @@
+
 <?php
 require_once __DIR__ . '/../koneksi.php';
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 if (!$id || $id < 1) {
-    redirect('index.php'); 
+    redirect('index.php');
 }
 
 $stmt = $pdo->prepare('SELECT * FROM suppliers WHERE id = ?');
@@ -70,11 +71,11 @@ include __DIR__ . '/../header.php';
 ?>
 
 <div class="mb-4">
-    <h1 class="h3 fw-bold">Edit Supplier</h1>
-    <p class="text-secondary">Perbarui informasi supplier.</p>
+    <h1 class="page-title h3">Edit Supplier</h1>
+    <p class="text-muted">Perbarui informasi supplier.</p>
 </div>
 
-<div class="card shadow-soft">
+<div class="card">
     <div class="card-body">
 
         <?php if ($error !== ''): ?>

@@ -1,3 +1,4 @@
+
 <?php
 require_once __DIR__ . '/../koneksi.php';
 
@@ -15,24 +16,22 @@ $sales = $stmt->fetchAll();
 include __DIR__ . '/../header.php';
 ?>
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <div>
-        <h1 class="h3 fw-bold">Data Sales</h1>
-        <p class="text-secondary mb-0">
-            Kelola seluruh data sales.
-        </p>
-    </div>
+<div class="mb-4">
+    <h1 class="h3 fw-bold">Data Sales</h1>
+    <p class="text-muted">Daftar data penjualan yang tersimpan.</p>
+</div>
 
+<div class="mb-3">
     <a href="tambah.php" class="btn btn-primary">
         + Tambah Sales
     </a>
 </div>
 
-<div class="card shadow-soft">
+<div class="card">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover align-middle">
-                <thead class="table-dark">
+            <table class="table table-bordered table-striped align-middle">
+                <thead class="table-light">
                     <tr>
                         <th>No.</th>
                         <th>Nama Supplier</th>
@@ -51,10 +50,10 @@ include __DIR__ . '/../header.php';
                                     Rp <?= number_format((int) $item['total'], 0, ',', '.') ?>
                                 </td>
                                 <td>
-                                    <a
-                                        href="edit.php?id=<?= (int) $item['id'] ?>"
-                                        class="btn btn-warning btn-sm"
-                                    >Edit</a>
+                                    <a href="edit.php?id=<?= (int) $item['id'] ?>"
+                                       class="btn btn-warning btn-sm">
+                                        Edit
+                                    </a>
 
                                     <form action="hapus.php" method="POST"
                                           class="d-inline"
@@ -86,7 +85,7 @@ include __DIR__ . '/../header.php';
         </div>
 
         <a href="../index.php" class="btn btn-secondary">
-            Kembali ke Dashboard
+            Kembali
         </a>
     </div>
 </div>

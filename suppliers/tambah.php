@@ -55,9 +55,14 @@ include __DIR__ . '/../header.php';
 <div class="mb-4">
     <h1 class="h3 fw-bold">Tambah Supplier</h1>
     <p class="text-secondary">Masukkan informasi supplier baru.</p>
+
+
+<div class="mb-4">
+    <h1 class="h3 fw-bold">Tambah Supplier</h1>
+    <p class="text-muted">Silakan isi data supplier berikut.</p>
 </div>
 
-<div class="card shadow-soft">
+<div class="card">
     <div class="card-body">
 
         <?php if ($error !== ''): ?>
@@ -98,7 +103,7 @@ include __DIR__ . '/../header.php';
             </div>
 
             <button type="submit" class="btn btn-primary">
-                Simpan Supplier
+                Simpan
             </button>
 
             <a href="index.php" class="btn btn-secondary">
@@ -108,5 +113,7 @@ include __DIR__ . '/../header.php';
 
     </div>
 </div>
+
+
 
 <?php include __DIR__ . '/../footer.php'; ?>
