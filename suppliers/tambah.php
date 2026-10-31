@@ -54,11 +54,6 @@ include __DIR__ . '/../header.php';
 
 <div class="mb-4">
     <h1 class="h3 fw-bold">Tambah Supplier</h1>
-    <p class="text-secondary">Masukkan informasi supplier baru.</p>
-
-
-<div class="mb-4">
-    <h1 class="h3 fw-bold">Tambah Supplier</h1>
     <p class="text-muted">Silakan isi data supplier berikut.</p>
 </div>
 

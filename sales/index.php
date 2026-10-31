@@ -22,7 +22,7 @@ include __DIR__ . '/../header.php';
 </div>
 
 <div class="mb-3">
-    <a href="tambah.php" class="btn btn-primary">
+    <a href="tambah.php" class="btn btn-secondary">
         + Tambah Sales
     </a>
 </div>
@@ -35,7 +35,7 @@ include __DIR__ . '/../header.php';
                     <tr>
                         <th>No.</th>
                         <th>Nama Supplier</th>
-                        <th>Total Penjualan</th>
+                        <th>Total </th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -47,7 +47,7 @@ include __DIR__ . '/../header.php';
                                 <td><?= $index + 1 ?></td>
                                 <td><?= e($item['supplier_name']) ?></td>
                                 <td>
-                                    Rp <?= number_format((int) $item['total'], 0, ',', '.') ?>
+                                     <?= number_format((int) $item['total'], 0, ',', '.') ?>
                                 </td>
                                 <td>
                                     <a href="edit.php?id=<?= (int) $item['id'] ?>"

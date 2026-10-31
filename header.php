@@ -14,8 +14,8 @@
 
     <style>
         body {
-            background-color: #f5f5f5;
-            color: #333;
+            background-color: #edf0ee;
+            color: #353232;
             font-family: Arial, sans-serif;
         }
 
@@ -27,12 +27,12 @@
             display: inline-block;
             padding: 5px 8px;
             margin-right: 5px;
-            background-color: #e9ecef;
+            background-color: #f0f0f0;
             border-radius: 4px;
         }
 
         .card {
-            border: 1px solid #ddd;
+            border: 1px solid #f1f3f1;
             border-radius: 6px;
         }
 
@@ -41,18 +41,22 @@
         }
 
         footer {
-            color: #777;
+            color: #312f2f;
         }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom mb-4">
+<nav class="navbar navbar-expand-lg navbar-dark mb-4"
+     style="background-color: #d6dbd6e7;">
     <div class="container">
-        <a class="navbar-brand text-dark" href="/html-35/ujianpos/index.php">
-            <span class="brand-mark">UP</span> UJIANPOS
-        </a>
-
+<a class="navbar-brand d-flex align-items-center gap-2"
+   href="/html-35/ujianpos/index.php">
+    <img src="/html-35/ujianpos/images/logo.png"
+         alt="Logo TKJ"
+         style="height: 45px; width: auto;">
+    <span class="fw-bold">Aplikasi POS</span>
+</a>
         <button class="navbar-toggler" type="button"
                 data-bs-toggle="collapse" data-bs-target="#menuNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -61,13 +65,13 @@
         <div class="collapse navbar-collapse" id="menuNavbar">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/html-35/ujianpos/index.php">Dashboard</a>
+                    <a class="nav-link text-black" href="/html-35/ujianpos/index.php">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/html-35/ujianpos/suppliers/index.php">Supplier</a>
+                    <a class="nav-link text-black" href="/html-35/ujianpos/suppliers/index.php">Supplier</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/html-35/ujianpos/sales/index.php">Sales</a>
+                    <a class="nav-link text-black" href="/html-35/ujianpos/sales/index.php">Sales</a>
                 </li>
             </ul>
         </div>

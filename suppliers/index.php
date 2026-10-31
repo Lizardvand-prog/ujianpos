@@ -21,7 +21,7 @@ include __DIR__ . '/../header.php';
 </div>
 
 <div class="mb-3">
-    <a href="tambah.php" class="btn btn-primary">
+    <a href="tambah.php" class="btn btn-secondary">
         + Tambah Supplier
     </a>
 </div>

@@ -14,20 +14,6 @@ $judul = 'Dashboard';
 include 'header.php';
 ?>
 
-<div class="d-flex align-items-center gap-3 mb-4">
-    <img src="images/logo.png"
-         alt="Logo TKJ"
-         width="75"
-         height="75"
-         style="object-fit: contain;">
-
-    <div>
-        <h1 class="page-title h3 mb-1">UJIANPOS</h1>
-        <p class="text-muted mb-0">
-            Aplikasi Pengelolaan Supplier dan Sales - TKJ 35
-        </p>
-    </div>
-</div>
 
 <div class="row g-3 mb-4">
     <div class="col-md-6">
@@ -36,7 +22,7 @@ include 'header.php';
                 <h5 class="text-muted">Total Supplier</h5>
                 <h2 class="fw-bold"><?= $totalSupplier ?></h2>
 
-                <a href="suppliers/index.php" class="btn btn-primary">
+                <a href="suppliers/index.php" class="btn btn-secondary">
                     Kelola Supplier
                 </a>
             </div>
