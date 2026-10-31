@@ -5,9 +5,9 @@ require_once __DIR__ . '/../koneksi.php';
 $judul = 'Data Sales';
 
 $stmt = $pdo->query(
-    'SELECT sales.id, sales.supplier_id, sales.total, suppliers.name AS supplier_name
+    'SELECT sales.en, sales.supplier_id, sales.total, suppliers.name AS supplier_name
      FROM sales
-     INNER JOIN suppliers ON sales.supplier_id = suppliers.id
+     INNER JOIN suppliers ON sales.supplier_en = suppliers.id
      ORDER BY sales.id DESC'
 );
 
